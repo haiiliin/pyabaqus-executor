@@ -11,7 +11,7 @@ from .Environment import Environment
 from .ExecutorSubWidget import ExecutorSubWidget
 from .Setting import Setting
 from .Ui_AbaqusExecutor import Ui_AbaqusExecutor
-from ..FileMonitorThread import FileMonitorThread
+from abaqus.Tools.AbaqusExecutor.FileMonitorThread import FileMonitorThread
 from ..Widgets.TextFinder import TextFinder
 
 

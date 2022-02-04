@@ -119,3 +119,6 @@ dmypy.json
 /executor_setup.exe
 /build_executor.bat
 /nsis_setup.nsi
+/Pipfile
+/Pipfile.lock
+/Qt.ico
