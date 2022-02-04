@@ -1,7 +1,7 @@
 # pyabaqus-executor
  Abaqus Executor
 
-## Other links
+## Other links for pyabaqus
 
 - GitHub repository: [Haiiliin/pyabaqus: Type hints for python scripting of Abaqus](https://github.com/Haiiliin/pyabaqus)
 - PyPI: [pyabaqus · PyPI](https://pypi.org/project/pyabaqus/)
