@@ -140,7 +140,7 @@ class MatplotlibWidget(QWidget):
             code += '\nplt.show()'
             file.write(code)
         except Exception as e:
-            QMessageBox.warning(self, 'Warning', repr(e))
+            pass
 
     def setCode(self, code: str, original: bool = True):
         self.codeEditor.setText(code)
