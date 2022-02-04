@@ -119,7 +119,7 @@ class AbaqusExecutorView(QMainWindow):
         try:
             response = requests.get(url)
             update_log: dict = json.loads(response.content)
-            latest = update_log['latest']['version']
+            latest = update_log['latest']
             if latest['version'] > current['version']:
                 updateInfo = """New version detected, go to download? 
     Version: {}
@@ -131,8 +131,8 @@ class AbaqusExecutorView(QMainWindow):
                 if ret == QMessageBox.Yes:
                     webbrowser.open(latest['url'])
 
-        except Exception:
-            pass
+        except Exception as e:
+            QMessageBox.critical(self, 'Error', repr(e))
 
     def createModel(self):
         pass
