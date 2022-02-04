@@ -31,9 +31,10 @@ class AbaqusExecutor(AbaqusExecutorView):
 
     def submit(self):
         activeWindow = self.currentSubWidget()
-        activeWindow.ui.tabWidget.setCurrentIndex(0)
         if activeWindow is None:
             return
+        
+        activeWindow.ui.tabWidget.setCurrentIndex(0)
 
         def setOdb():
             files = os.listdir(activeWindow.model.workDirectory)

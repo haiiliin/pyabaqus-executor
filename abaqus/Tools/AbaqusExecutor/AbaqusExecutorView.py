@@ -168,7 +168,7 @@ class AbaqusExecutorView(QMainWindow):
         activeWindow.ui.ys.setText(','.join(ys))
 
     def currentSubWidget(self) -> typing.Optional[ExecutorSubWidget]:
-        return self.currentSubWindow().widget()
+        return self.currentSubWindow().widget() if self.currentSubWindow() is not None else None
 
     def currentSubWindow(self) -> typing.Optional[ExecutorSubWidget]:
         if self.ui.mdiArea.currentSubWindow() is None:
