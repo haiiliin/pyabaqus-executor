@@ -95,7 +95,6 @@ class MatplotlibWidget(QWidget):
         self.toolbar.addAction(self.actionUpdate)
         self.toolbar.addSeparator()
         self.toolbar.addAction(self.actionRestore)
-        self.toolbar.addSeparator()
         self.toolbar.setToolButtonStyle(Qt.ToolButtonIconOnly)
 
         # Add Tabs to TabWidget

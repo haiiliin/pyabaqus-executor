@@ -59,6 +59,7 @@
      <string>&amp;Setting</string>
     </property>
     <addaction name="actionEnvironment"/>
+    <addaction name="actionUpdate"/>
    </widget>
    <widget class="QMenu" name="menuRun">
     <property name="title">
@@ -240,7 +241,7 @@
     <string>Output</string>
    </property>
    <property name="toolTip">
-    <string>Extract Output</string>
+    <string>Extract Output Data</string>
    </property>
   </action>
   <action name="actionPlot">
@@ -253,6 +254,18 @@
    </property>
    <property name="toolTip">
     <string>Plot  Figure</string>
+   </property>
+  </action>
+  <action name="actionUpdate">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/update.png</normaloff>:/icons/icons/update.png</iconset>
+   </property>
+   <property name="text">
+    <string>Update</string>
+   </property>
+   <property name="toolTip">
+    <string>UpdateProgram</string>
    </property>
   </action>
  </widget>

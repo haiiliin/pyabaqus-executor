@@ -1,17 +1,23 @@
+import json
 import os
 import typing
 
 import pandas as pd
+import requests
 from PyQt5.QtCore import Qt, QProcess
 from PyQt5.QtGui import QKeyEvent, QPalette, QTextDocument, QTextCursor
-from PyQt5.QtWidgets import QMainWindow, QApplication, QStyle, QFileDialog, QMessageBox, QPlainTextEdit, QMdiSubWindow, \
-    QDialog
+from PyQt5.QtWidgets import (QMainWindow, QApplication, QStyle, QFileDialog, QMessageBox, QPlainTextEdit, QMdiSubWindow,
+                             QDialog)
+
+import webbrowser
+
+from currentVersion import *
 
 from .Environment import Environment
 from .ExecutorSubWidget import ExecutorSubWidget
+from .FileMonitorThread import FileMonitorThread
 from .Setting import Setting
 from .Ui_AbaqusExecutor import Ui_AbaqusExecutor
-from abaqus.Tools.AbaqusExecutor.FileMonitorThread import FileMonitorThread
 from ..Widgets.TextFinder import TextFinder
 
 
@@ -98,12 +104,6 @@ class AbaqusExecutorView(QMainWindow):
         activeWindow.model.save(filePath[0])
         self.statusBar().showMessage('File {} saved successfully'.format(filePath[0]), 4000)
 
-    def abaqus(self):
-        pass
-
-    def abaqusCAE(self):
-        pass
-
     def environment(self):
         env = Environment(self, abaqus=self.setting['abaqus'])
         ret = env.exec()
@@ -113,6 +113,26 @@ class AbaqusExecutorView(QMainWindow):
         for subWindows in self.ui.mdiArea.subWindowList():
             widget: ExecutorSubWidget = subWindows.widget()
             widget.model.setAbaqusCommand(self.setting['abaqus'])
+
+    def updateProgram(self) -> None:
+        url = 'https://github.com/Haiiliin/pyabaqus-executor/raw/main/update.json'
+        try:
+            response = requests.get(url)
+            update_log: dict = json.loads(response.content)
+            latest = update_log['latest']['version']
+            if latest['version'] > current['version']:
+                updateInfo = """New version detected, go to download? 
+    Version: {}
+    Update time: {}
+    Release note: {}
+""".format(latest['version'], latest['updateTime'], latest['releaseNote'])
+                ret = QMessageBox.question(self, 'Update detected', updateInfo,
+                                           QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel)
+                if ret == QMessageBox.Yes:
+                    webbrowser.open(latest['url'])
+
+        except Exception:
+            pass
 
     def createModel(self):
         pass
@@ -155,7 +175,8 @@ class AbaqusExecutorView(QMainWindow):
         else:
             self.textFinder.activateWindow()
         index = self.currentSubWidget().ui.tabWidget.currentIndex()
-        currentTextEdit = self.currentSubWidget().ui.sta if index == 1 else self.currentSubWidget().ui.msg if index == 2 else None
+        currentTextEdit = (self.currentSubWidget().ui.sta if index == 1 else
+                           self.currentSubWidget().ui.msg if index == 2 else None)
         if currentTextEdit is None:
             return
         if not currentTextEdit.textCursor().selectedText().lstrip().rstrip() == '':
@@ -166,7 +187,8 @@ class AbaqusExecutorView(QMainWindow):
     def showFoundText(self, findNext: bool):
         textToFind = self.textFinder.textToFind()
         index = self.currentSubWidget().ui.tabWidget.currentIndex()
-        currentTextEdit = self.currentSubWidget().ui.sta if index == 1 else self.currentSubWidget().ui.msg if index == 2 else None
+        currentTextEdit = (self.currentSubWidget().ui.sta if index == 1 else
+                           self.currentSubWidget().ui.msg if index == 2 else None)
         if currentTextEdit is None:
             return
         if currentTextEdit is not None:
@@ -176,7 +198,8 @@ class AbaqusExecutorView(QMainWindow):
                 palette.setColor(QPalette.Highlight, palette.color(QPalette.Active, QPalette.Highlight))
                 currentTextEdit.setPalette(palette)
             else:
-                btn = QMessageBox.question(self, 'Find', 'Find nothing, move to the {}?'.format('beginning' if findNext else 'end'),
+                btn = QMessageBox.question(self, 'Find',
+                                           'Find nothing, move to the {}?'.format('beginning' if findNext else 'end'),
                                            QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel, QMessageBox.NoButton)
                 if btn == QMessageBox.Yes:
                     textCursor = currentTextEdit.textCursor()
@@ -211,14 +234,16 @@ class AbaqusExecutorView(QMainWindow):
 
     def browseCwd(self):
         activeWindow = self.currentSubWidget()
-        filePath = QFileDialog.getExistingDirectory(self, caption='Select folder', directory=activeWindow.model.workDirectory)
+        filePath = QFileDialog.getExistingDirectory(self, caption='Select folder',
+                                                    directory=activeWindow.model.workDirectory)
         self.currentSubWidget().ui.cwd.setPlainText(filePath)
         activeWindow.model['workDirectory'] = filePath
         self.currentSubWindow().setWindowTitle(filePath)
 
     def browseModelScript(self):
         activeWindow = self.currentSubWidget()
-        filePath = QFileDialog.getOpenFileName(self, caption='Select model script', directory=activeWindow.model.workDirectory,
+        filePath = QFileDialog.getOpenFileName(self, caption='Select model script',
+                                               directory=activeWindow.model.workDirectory,
                                                filter='Python script (*.py)')
         if not os.path.exists(filePath[0]):
             return
@@ -227,7 +252,8 @@ class AbaqusExecutorView(QMainWindow):
 
     def browseJobFile(self):
         activeWindow = self.currentSubWidget()
-        filePath = QFileDialog.getOpenFileName(self, caption='Select Abaqus input file', directory=activeWindow.model.workDirectory,
+        filePath = QFileDialog.getOpenFileName(self, caption='Select Abaqus input file',
+                                               directory=activeWindow.model.workDirectory,
                                                filter='Abaqus input file (*.inp)')
         if not os.path.exists(filePath[0]):
             return
@@ -236,7 +262,8 @@ class AbaqusExecutorView(QMainWindow):
 
     def browseInputFile(self):
         activeWindow = self.currentSubWidget()
-        filePath = QFileDialog.getOpenFileName(self, caption='Select Abaqus input file', directory=activeWindow.model.workDirectory,
+        filePath = QFileDialog.getOpenFileName(self, caption='Select Abaqus input file',
+                                               directory=activeWindow.model.workDirectory,
                                                filter='Abaqus input file (*.inp)')
         if not os.path.exists(filePath[0]):
             return
@@ -245,7 +272,8 @@ class AbaqusExecutorView(QMainWindow):
 
     def browseUserSubroutine(self):
         activeWindow = self.currentSubWidget()
-        filePath = QFileDialog.getOpenFileName(self, caption='Select Abaqus user subroutine', directory=activeWindow.model.workDirectory,
+        filePath = QFileDialog.getOpenFileName(self, caption='Select Abaqus user subroutine',
+                                               directory=activeWindow.model.workDirectory,
                                                filter='Abaqus subroutine file (*.for *.f *.c *.cpp *.cxx)')
         if not os.path.exists(filePath[0]):
             return
@@ -264,7 +292,8 @@ class AbaqusExecutorView(QMainWindow):
 
     def browseOutputScript(self):
         activeWindow = self.currentSubWidget()
-        filePath = QFileDialog.getOpenFileName(self, caption='Select output script', directory=activeWindow.model.workDirectory,
+        filePath = QFileDialog.getOpenFileName(self, caption='Select output script',
+                                               directory=activeWindow.model.workDirectory,
                                                filter='Python script (*.py)')
         if not os.path.exists(filePath[0]):
             return
@@ -273,7 +302,8 @@ class AbaqusExecutorView(QMainWindow):
 
     def browseDataFile(self):
         activeWindow = self.currentSubWidget()
-        filePath = QFileDialog.getOpenFileName(self, caption='Select data file', directory=activeWindow.model.workDirectory,
+        filePath = QFileDialog.getOpenFileName(self, caption='Select data file',
+                                               directory=activeWindow.model.workDirectory,
                                                filter='Comma-separated file (*.csv)')
         if not os.path.exists(filePath[0]):
             return
@@ -297,3 +327,4 @@ class AbaqusExecutorView(QMainWindow):
         self.ui.actionPlot.triggered.connect(self.drawFigures)
 
         self.ui.actionEnvironment.triggered.connect(self.environment)
+        self.ui.actionUpdate.triggered.connect(self.updateProgram)
