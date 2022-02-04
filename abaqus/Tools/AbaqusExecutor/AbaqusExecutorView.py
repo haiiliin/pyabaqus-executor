@@ -114,7 +114,7 @@ class AbaqusExecutorView(QMainWindow):
             widget: ExecutorSubWidget = subWindows.widget()
             widget.model.setAbaqusCommand(self.setting['abaqus'])
 
-    def updateProgram(self) -> None:
+    def updateProgram(self, startUp: bool = False) -> None:
         url = 'https://github.com/Haiiliin/pyabaqus-executor/raw/main/update.json'
         try:
             response = requests.get(url)
@@ -124,12 +124,17 @@ class AbaqusExecutorView(QMainWindow):
                 updateInfo = """New version detected, go to download? 
     Version: {}
     Update time: {}
-    Release note: {}
-""".format(latest['version'], latest['updateTime'], latest['releaseNote'])
-                ret = QMessageBox.question(self, 'Update detected', updateInfo,
+    Release note: {}""".format(latest['version'], latest['updateTime'], latest['releaseNote'])
+                ret = QMessageBox.question(self, 'Update Detected', updateInfo,
                                            QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel)
                 if ret == QMessageBox.Yes:
                     webbrowser.open(latest['url'])
+            elif not startUp:
+                info = """Congratulations, you have installed the latest version of Abaqus Executor
+    Version: {}
+    Update time: {}
+    Release note: {}""".format(latest['version'], latest['updateTime'], latest['releaseNote'])
+                QMessageBox.information(self, 'No Updates Detected', info)
 
         except Exception as e:
             QMessageBox.critical(self, 'Error', repr(e))

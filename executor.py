@@ -17,6 +17,7 @@ def registerFileRelation():
     setting.setValue("/" + ext + "/OpenWithProgIds/" + className, "")
     setting.sync()
 
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     # registerFileRelation()
@@ -26,6 +27,6 @@ if __name__ == '__main__':
     # Open file by dou-click
     if len(sys.argv) > 1 and sys.argv[1].lower().endswith('.abqjson'):
         abqExecutor.new(filePath=sys.argv[1])
-
     abqExecutor.show()
+    abqExecutor.updateProgram(True)
     sys.exit(app.exec_())
