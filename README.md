@@ -1,5 +1,5 @@
-# pyabaqus
- Type hints for Python scripting of Abaqus
+# pyabaqus-executor
+ Abaqus Executor
 
 ## Other links
 
