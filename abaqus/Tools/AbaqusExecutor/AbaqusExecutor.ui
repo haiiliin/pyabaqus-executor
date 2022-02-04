@@ -60,6 +60,7 @@
     </property>
     <addaction name="actionEnvironment"/>
     <addaction name="actionUpdate"/>
+    <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuRun">
     <property name="title">
@@ -266,6 +267,18 @@
    </property>
    <property name="toolTip">
     <string>UpdateProgram</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/about.png</normaloff>:/icons/icons/about.png</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+   <property name="toolTip">
+    <string>About This Program</string>
    </property>
   </action>
  </widget>

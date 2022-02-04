@@ -28,5 +28,5 @@ if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1].lower().endswith('.abqjson'):
         abqExecutor.new(filePath=sys.argv[1])
     abqExecutor.show()
-    abqExecutor.updateProgram(True)
+    # abqExecutor.updateProgram(True)
     sys.exit(app.exec_())

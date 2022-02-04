@@ -139,6 +139,13 @@ class AbaqusExecutorView(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, 'Error', repr(e))
 
+    def about(self):
+        homePage = 'https://github.com/Haiiliin/pyabaqus-executor'
+        msg = "Abaqus Executor is a program to build your Abaqus model, submit your job, " \
+              "extract the output data, and draw figures of the output data. For more information, " \
+              "check on <a href='{}'>GitHub</a>.".format(homePage)
+        QMessageBox.information(self, 'About Abaqus Executor', msg)
+
     def createModel(self):
         pass
 
@@ -333,3 +340,4 @@ class AbaqusExecutorView(QMainWindow):
 
         self.ui.actionEnvironment.triggered.connect(self.environment)
         self.ui.actionUpdate.triggered.connect(self.updateProgram)
+        self.ui.actionAbout.triggered.connect(self.about)

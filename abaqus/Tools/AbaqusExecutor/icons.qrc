@@ -14,5 +14,6 @@
         <file>icons/output.png</file>
         <file>icons/plot.png</file>
         <file>icons/submit.png</file>
+        <file>icons/about.png</file>
     </qresource>
 </RCC>
