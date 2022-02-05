@@ -75,13 +75,13 @@ class PythonHighlighter(QSyntaxHighlighter):
                             ("decorator", Qt.darkBlue), ("comment", Qt.darkGreen),
                             ("string", Qt.darkYellow), ("number", Qt.darkMagenta),
                             ("error", Qt.darkRed), ("pyqt", Qt.darkCyan)):
-            format = QTextCharFormat(baseFormat)
-            format.setForeground(QColor(color))
+            fmt = QTextCharFormat(baseFormat)
+            fmt.setForeground(QColor(color))
             if name in ("keyword", "decorator"):
-                format.setFontWeight(QFont.Bold)
+                fmt.setFontWeight(QFont.Bold)
             if name == "comment":
-                format.setFontItalic(True)
-            PythonHighlighter.Formats[name] = format
+                fmt.setFontItalic(True)
+            PythonHighlighter.Formats[name] = fmt
 
     def highlightBlock(self, text):
         NORMAL, TRIPLESINGLE, TRIPLEDOUBLE, ERROR = range(4)
@@ -101,11 +101,11 @@ class PythonHighlighter(QSyntaxHighlighter):
             self.setFormat(0, textLength, PythonHighlighter.Formats["error"])
             return
 
-        for regex, format in PythonHighlighter.Rules:
+        for regex, fmt in PythonHighlighter.Rules:
             i = regex.indexIn(text)
             while i >= 0:
                 length = regex.matchedLength()
-                self.setFormat(i, length, PythonHighlighter.Formats[format])
+                self.setFormat(i, length, PythonHighlighter.Formats[fmt])
                 i = regex.indexIn(text, i + length)
 
         # Slow but good quality highlighting for comments. For more
