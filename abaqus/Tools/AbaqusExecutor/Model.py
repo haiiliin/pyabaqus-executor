@@ -70,9 +70,30 @@ class Model:
         if key not in ['workDirectory', 'modelScript', 'input', 'user', 'odb', 'outputScript', 'data']:
             raise KeyError('Key {} not exist'.format(key))
         exec('self.{} = value'.format(key))
+        
+    def modelScriptName(self):
+        modelScriptFilePath = os.path.join(self.workDirectory, self.modelScript)
+        return os.path.basename(modelScriptFilePath)
 
     def jobName(self):
-        return self.input.split('.')[0]
+        jobFilePath = os.path.join(self.workDirectory, self.input)
+        return os.path.basename(jobFilePath)
+    
+    def subroutineName(self):
+        subroutinePath = os.path.join(self.workDirectory, self.user)
+        return os.path.basename(subroutinePath)
+    
+    def odbName(self):
+        odbPath = os.path.join(self.workDirectory, self.odb)
+        return os.path.basename(odbPath)
+    
+    def outputScriptName(self):
+        outputPath = os.path.join(self.workDirectory, self.outputScript)
+        return os.path.basename(outputPath)
+     
+    def wd(self):
+        jobFilePath = os.path.join(self.workDirectory, self.input)
+        return os.path.dirname(jobFilePath)
 
     def createModelCommand(self):
         arguments = ['cae', '-noGUI', self.modelScript]
@@ -81,13 +102,13 @@ class Model:
     def abaqusCommand(self):
         options = ['int', 'double']
         arguments = []
-        job = inp = self.input.split('.')[0]
+        job = inp = self.jobName().split('.')[0]
         arguments += ['job={}'.format(job), 'input={}'.format(inp)]
         if not self.user == '':
-            arguments.append('user={}'.format(self.user))
+            arguments.append('user={}'.format(self.subroutineName().split('.')[0]))
         arguments += options
         return self.command, arguments
 
     def extractOutputCommand(self):
-        arguments = ['cae', 'database={}'.format(self.odb), 'script={}'.format(self.outputScript)]
+        arguments = ['cae', 'database={}'.format(self.odbName()), 'script={}'.format(self.outputScriptName())]
         return self.command, arguments

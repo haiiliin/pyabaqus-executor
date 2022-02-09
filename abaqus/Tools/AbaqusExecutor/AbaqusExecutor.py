@@ -35,7 +35,7 @@ class AbaqusExecutor(AbaqusExecutorView):
             return
         
         activeWindow.ui.tabWidget.setCurrentIndex(0)
-
+        
         def setOdb():
             files = os.listdir(activeWindow.model.workDirectory)
             for file in files:
@@ -45,11 +45,11 @@ class AbaqusExecutor(AbaqusExecutorView):
                     break
                 
         try:
-            self.thread.setWorkDirectory(os.path.abspath(activeWindow.model.workDirectory))
+            self.thread.setWorkDirectory(os.path.abspath(activeWindow.model.wd()))
             self.thread.setJobName(activeWindow.model.jobName())
             self.thread.start()
 
-            self.process.setWorkingDirectory(os.path.abspath(activeWindow.model.workDirectory))
+            self.process.setWorkingDirectory(os.path.abspath(activeWindow.model.wd()))
             self.process.start(*activeWindow.model.abaqusCommand())
             self.process.finished.connect(setOdb)
         except Exception as e:
@@ -59,8 +59,11 @@ class AbaqusExecutor(AbaqusExecutorView):
         activeWindow = self.currentSubWidget()
         if activeWindow is None:
             return
+        
+        activeWindow.ui.tabWidget.setCurrentIndex(0)
+        
         try:
-            self.process.setWorkingDirectory(os.path.abspath(activeWindow.model.workDirectory))
+            self.process.setWorkingDirectory(os.path.abspath(activeWindow.model.wd()))
             self.process.start(*activeWindow.model.extractOutputCommand())
         except Exception as e:
             QMessageBox.warning(self, 'Warning', repr(e))

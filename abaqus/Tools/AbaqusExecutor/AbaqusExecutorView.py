@@ -78,7 +78,7 @@ class AbaqusExecutorView(QMainWindow):
             widget.loadModel2View()
             subWindow.setWindowTitle(filePath[0])
 
-        widget.show()
+        widget.showMaximized()
 
     def open(self):
         filePath = QFileDialog.getOpenFileName(self, caption='Select Abaqus Executor file', directory='',
