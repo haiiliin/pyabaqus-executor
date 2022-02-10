@@ -27,6 +27,7 @@ class PythonInterpreter(QObject, InteractiveInterpreter):
         return self._executing
 
     def runcode(self, code):
+        print('code = ', code)
         self.exec_signal.emit(code)
 
     @Slot(object)
