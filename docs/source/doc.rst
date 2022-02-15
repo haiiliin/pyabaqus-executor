@@ -2,6 +2,7 @@
 Documentation
 =============
 
+Abaqus Executor is an application to build your Abaqus model, submit your job, extract the output data, and draw figures of the output data.
 
 Main Interface
 --------------
