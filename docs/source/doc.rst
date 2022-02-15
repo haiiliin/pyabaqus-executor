@@ -74,7 +74,7 @@ The **Model**, **Submit**, and **Output** will use the Abaqus command to call th
     abaqus database=odb-name script=output-script.py
 
 
-Plotting the figures
+Plot the figures
 --------------------
 
 The **Plot** action is used to plot figures. The following Python code is used to plot the figure
