@@ -46,7 +46,7 @@ When you finished the job, please don't forget to click the **File -> Save** or 
 
 When you have created a project file, you can click the **File -> Open** button in the menu bar or **Open** button in the tool bar or use the short cut **Ctrl + O** to open the project. 
 
-You can also set the default opening application for **.abqjson** to Abaqus Executor. After that you can double-click the project file to open it in Abaqus Executor. The executable file path of Abaqus Executor is something like this:
+You can also set the default opening application for **.abqjson** file to Abaqus Executor. After that you can double-click the project file to open it in Abaqus Executor. The executable file path of Abaqus Executor is something like this:
 
 .. code-block::
 
