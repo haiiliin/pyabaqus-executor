@@ -21,3 +21,4 @@ dependencies:
     - PyQt5
     - sphinx-toolbox
     - numpydoc
+    - sphinx_nameko_theme
