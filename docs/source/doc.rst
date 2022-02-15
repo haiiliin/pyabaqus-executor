@@ -41,9 +41,9 @@ You can also directly write the project file according the following format and 
         "title": "title"
     }
 
-When you finished the job, please don't forget to click the **File -> Save** or **File -> Save As** button in the menu bar of **Save** or **Save As** button in the tool bar or use the short cut **Ctrl + S** or **Ctrl + Shift + S** to save the file before you close the application.
+When you finished the job, please don't forget to click the **File -> Save** or **File -> Save As** button in the menu bar or **Save** or **Save As** button in the tool bar or use the short cut **Ctrl + S** or **Ctrl + Shift + S** to save the file before you close the application.
 
-When you have created a project file, you can click the **File -> Open** button in the menu bar of **Open** button in the tool bar or use the short cut **Ctrl + O** to open the project. 
+When you have created a project file, you can click the **File -> Open** button in the menu bar or **Open** button in the tool bar or use the short cut **Ctrl + O** to open the project. 
 
 You can also set the default opening application for **.abqjson** to Abaqus Executor. After that you can double-click the project file to open it in Abaqus Executor. The executable file path of Abaqus Executor is something like this:
 
