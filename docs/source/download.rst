@@ -3,7 +3,7 @@ Download
 ========
 
 You can download the latest version of Abaqus Executor `here <https://github.com/Haiiliin/pyabaqus-executor/releases/latest>`_ on GitHub.
-For older versions, go `here <https://github.com/Haiiliin/pyabaqus-executor/releases/latest>`_ on GitHub.
+For older versions, go `here <https://github.com/Haiiliin/pyabaqus-executor/releases/>`_ on GitHub.
 
 
 Update logs
