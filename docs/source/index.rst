@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Abaqus Executor's documentation!
-===========================================
+Abaqus Executor
+===============
 
 Abaqus Executor is an application to build your Abaqus model, submit your 
 job, extract the output data, and draw figures of the output data.
