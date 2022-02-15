@@ -9,6 +9,8 @@ Welcome to Abaqus Executor's documentation!
 Abaqus Executor is a program to build your Abaqus model, submit your 
 job, extract the output data, and draw figures of the output data.
 
+The GitHub Repository: `Haiiliin/pyabaqus-executor <https://github.com/Haiiliin/pyabaqus-executor>`_.
+
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
