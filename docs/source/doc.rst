@@ -64,7 +64,7 @@ When you have opened a project file, it would be like this:
 
 First, you choose the files to be processed, like the Python script to create the model, the input file, the user subroutine file, etc. Then, click actions in **Run** in the menu bar or in the tool bar, corresponding action will be submited. Each action corresponds to each section in the project settings. 
 
-The **Model**, **Submit**, and **Output** will use the Abaqus command to call the Abaqus kernel. 
+The **Model**, **Submit**, and **Output** actions will use the Abaqus command to call the Abaqus kernel. The following commands are used:
 
 .. code-block:: shell
     :caption: Abaqus Commands
