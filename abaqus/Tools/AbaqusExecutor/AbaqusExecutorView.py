@@ -5,7 +5,7 @@ import typing
 import pandas as pd
 import requests
 from PyQt5.QtCore import Qt, QProcess
-from PyQt5.QtGui import QKeyEvent, QPalette, QTextDocument, QTextCursor
+from PyQt5.QtGui import QKeyEvent, QPalette, QTextDocument, QTextCursor, QDragEnterEvent, QDropEvent
 from PyQt5.QtWidgets import (QMainWindow, QApplication, QStyle, QFileDialog, QMessageBox, QPlainTextEdit, QMdiSubWindow,
                              QDialog)
 
@@ -29,6 +29,8 @@ class AbaqusExecutorView(QMainWindow):
         self.ui.setupUi(self)
         self.setWindowIcon(QApplication.style().standardIcon(QStyle.SP_TitleBarMenuButton))
         self.connectSignals()
+        
+        self.setAcceptDrops(True)
 
         self.textFinder = None
         self.subWindows: list[ExecutorSubWidget] = []
@@ -341,3 +343,16 @@ class AbaqusExecutorView(QMainWindow):
         self.ui.actionEnvironment.triggered.connect(self.environment)
         self.ui.actionUpdate.triggered.connect(self.updateProgram)
         self.ui.actionAbout.triggered.connect(self.about)
+        
+    def dragEnterEvent(self, event: QDragEnterEvent) -> None:
+        if event.mimeData().hasUrls():
+            event.accept()
+        else:
+            event.ignore()
+            
+    def dropEvent(self, event: QDropEvent) -> None:
+        urls = event.mimeData().urls()
+        for url in urls:
+            filePath = url.toLocalFile()
+            if filePath.endswith('.abqjson'):
+                self.new(filePath=filePath)
