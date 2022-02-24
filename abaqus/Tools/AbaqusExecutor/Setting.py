@@ -1,4 +1,5 @@
 import os
+import sys
 
 from PyQt5.QtCore import QSettings
 
@@ -11,6 +12,9 @@ class Setting(dict):
         self.detectAbaqusCommand()
 
     def detectAbaqusCommand(self):
+        if sys.platform == 'linux':
+            return
+        
         self['abaqus'] = ''
         paths = os.environ['Path'].split(';')
 
@@ -34,6 +38,9 @@ class Setting(dict):
             self.saveAbaqusCommand2Registry()
 
     def saveAbaqusCommand2Registry(self):
+        if sys.platform == 'linux':
+            return
+        
         setting = QSettings('AbaqusExecutor', 'Configuration')
         if os.path.exists(self['abaqus']) and self['abaqus'].endswith('.bat') and not self['abaqus'] == setting.value('abaqus'):
             setting.setValue('abaqus', self['abaqus'])
