@@ -30,7 +30,7 @@ You can also directly write the project file according the following format and 
         "modelScript": "model-script-file-path",
         "input": "input-file-path",
         "user": "user-subroutine-file-path",
-        "odb": "abaqus-odb-file=path",
+        "odb": "abaqus-odb-file-path",
         "outputScript": "output-script-file-path",
         "data": "data-file-path",
         "x": "x-axis-for-plotting",
