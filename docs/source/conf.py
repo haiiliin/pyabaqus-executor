@@ -40,7 +40,7 @@ extensions = [
     'sphinx.ext.githubpages', 
 ]
 
-html_baseurl = 'executor.haiiliin.com'
+html_baseurl = 'https://executor.haiiliin.com/'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
