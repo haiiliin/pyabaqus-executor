@@ -116,10 +116,10 @@ fig.tight_layout()
 ```
 
 You can customize the figure by edit the Code in the **Code** tab and click the **Update** button 
-(![update](https://github.com/Haiiliin/pyabaqus-executor/blob/main/images/update.png "Update"), the 
+(![update](https://github.com/Haiiliin/pyabaqus-executor/blob/main/images/update.png =x20), the 
 second button of the three buttons on the right). You can also click the **Restore** button 
-(![restore](https://github.com/Haiiliin/pyabaqus-executor/blob/main/images/restore.png "Restore"), the third 
+(![restore](https://github.com/Haiiliin/pyabaqus-executor/blob/main/images/restore.png =x20), the third 
 button of the three buttons on the right) to set it to the default style.
 
 Or, you can also customize the figure using the **matplotlib** default tool button 
-![options](https://github.com/Haiiliin/pyabaqus-executor/blob/main/images/options.png "Options") to customize the figure.
+![options](https://github.com/Haiiliin/pyabaqus-executor/blob/main/images/options.png =x20) to customize the figure.
