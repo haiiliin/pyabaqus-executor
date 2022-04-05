@@ -2,12 +2,12 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Download" href="download.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
-    <meta name="generator" content="sphinx-4.4.0, furo 2022.02.23"/>
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.03.04"/>
         <title>Abaqus Executor 1.0.14 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=3c656993158f05539f962c5cea52a5e6c184bb8c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
     
     
@@ -19,16 +19,18 @@
   --color-code-foreground: black;
   
   }
-  body[data-theme="dark"] {
-    --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  
-  }
-  @media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) {
+  @media not print {
+    body[data-theme="dark"] {
       --color-code-background: #202020;
   --color-code-foreground: #d0d0d0;
   
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
     }
   }
 </style></head>
@@ -149,12 +151,7 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="download.html">Download</a></li>
-<li class="toctree-l1"><a class="reference internal" href="doc.html">Documentation</a></li>
-</ul>
-
+  
 </div>
 </div>
 
@@ -189,13 +186,113 @@
 <h1>Abaqus Executor<a class="headerlink" href="#abaqus-executor" title="Permalink to this headline">#</a></h1>
 <p>Abaqus Executor is an application to build your Abaqus model, submit your
 job, extract the output data, and draw figures of the output data.</p>
-<p>The GitHub Repository: <a class="reference external" href="https://github.com/Haiiliin/pyabaqus-executor">Haiiliin/pyabaqus-executor</a>.</p>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="download.html">Download</a></li>
-<li class="toctree-l1"><a class="reference internal" href="doc.html">Documentation</a></li>
+<div class="section" id="other-links-for-pyabaqus">
+<h2>Other links for pyabaqus<a class="headerlink" href="#other-links-for-pyabaqus" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>GitHub repository: <a class="reference external" href="https://github.com/Haiiliin/pyabaqus">Haiiliin/pyabaqus: Type hints for python scripting of Abaqus</a></p></li>
+<li><p>PyPI: <a class="reference external" href="https://pypi.org/project/pyabaqus/">pyabaqus · PyPI</a></p></li>
+<li><p>Documentation: <a class="reference external" href="https://haiiliin.com/pyabaqus/">Welcome to pyabaqus’s documentation! - pyabaqus documentation</a></p></li>
 </ul>
+</div>
+<div class="section" id="downloads">
+<h2>Downloads<a class="headerlink" href="#downloads" title="Permalink to this headline">#</a></h2>
+<p>You can download the latest version of Abaqus Executor on <a class="reference external" href="https://github.com/Haiiliin/pyabaqus-executor/releases/latest">GitHub</a>.
+For older versions, go <a class="reference external" href="https://github.com/Haiiliin/pyabaqus-executor/releases/">here</a> on GitHub.</p>
+</div>
+<div class="section" id="main-interface">
+<h2>Main Interface<a class="headerlink" href="#main-interface" title="Permalink to this headline">#</a></h2>
+<p>This is the main interface of Abaqus Executor.</p>
+<a class="reference internal image-reference" href="_images/main-interface.png"><img alt="_images/main-interface.png" class="align-center" src="_images/main-interface.png" style="width: 100%;"/></a>
+<p>There are three main parts: menu bar, tool bar, and main working area. All actions available in the menu bar, several most frequently used actions are showed in the tool bar. The working area is the place to make the magic which will be showed later.</p>
+</div>
+<div class="section" id="create-open-save-project-files">
+<h2>Create, Open, Save Project Files<a class="headerlink" href="#create-open-save-project-files" title="Permalink to this headline">#</a></h2>
+<p>The first thing is to create a new project file, you can click <strong>File -&gt; New</strong> button in the menu bar of <strong>New</strong> button in the tool bar or use the short cut <strong>Ctrl + N</strong> to create a new project file. The project file of Abaqus Executor is a plain text file with the extension of <strong>.abqjson</strong>, it is a <strong>JSON</strong>-format file stores the configuration of the project.</p>
+<p>You can also directly write the project file according the following format and save it as a <strong>.abqjson</strong> file:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">ABQJSON File Format</span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">"modelScript"</span><span class="p">:</span><span class="w"> </span><span class="s2">"model-script-file-path"</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">"input"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input-file-path"</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user-subroutine-file-path"</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">"odb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abaqus-odb-file-path"</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">"outputScript"</span><span class="p">:</span><span class="w"> </span><span class="s2">"output-script-file-path"</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data-file-path"</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">"x"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x-axis-for-plotting"</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">"ys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="s2">"y-axis-for-plotting"</span><span class="w"></span>
+<span class="w">    </span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="nt">"xlabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x-label"</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">"ylabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"y-label"</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"title"</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>When you finished the job, please don’t forget to click the <strong>File -&gt; Save</strong> or <strong>File -&gt; Save As</strong> button in the menu
+bar or <strong>Save</strong> or <strong>Save As</strong> button in the tool bar or use the short cut <strong>Ctrl + S</strong> or <strong>Ctrl + Shift + S</strong> to save
+the file before you close the application.</p>
+<p>When you have created a project file, you can click the <strong>File -&gt; Open</strong> button in the menu bar or <strong>Open</strong> button in
+the tool bar or use the short cut <strong>Ctrl + O</strong> to open the project.</p>
+<p>You can also set the default opening application for <strong>.abqjson</strong> file to Abaqus Executor. After that you can
+double-click the project file to open it in Abaqus Executor. The executable file path of Abaqus Executor is something
+like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Program</span> <span class="n">Files</span> <span class="p">(</span><span class="n">x86</span><span class="p">)</span>\<span class="n">Abaqus</span> <span class="n">Executor</span>\<span class="n">executor</span><span class="o">.</span><span class="n">exe</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-the-project">
+<h2>Configure The Project<a class="headerlink" href="#configure-the-project" title="Permalink to this headline">#</a></h2>
+<p>When you have opened a project file, it would be like this:</p>
+<a class="reference internal image-reference" href="_images/project.png"><img alt="_images/project.png" class="align-center" src="_images/project.png" style="width: 100%;"/></a>
+<p>First, you choose the files to be processed, like the Python script to create the model, the input file, the user
+subroutine file, etc. Then, click actions in <strong>Run</strong> in the menu bar or in the tool bar, corresponding action will be
+submitted. Each action corresponds to each section in the project settings.</p>
+<p>The <strong>Model</strong>, <strong>Submit</strong>, and <strong>Output</strong> actions will use the Abaqus command to call the Abaqus kernel. The following
+commands are used:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Abaqus Commands</span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> work-directory
+abaqus cae noGUI script.py
+abaqus <span class="nv">job</span><span class="o">=</span>job-name <span class="nv">input</span><span class="o">=</span>input-name <span class="nv">user</span><span class="o">=</span>user-name int double
+abaqus <span class="nv">database</span><span class="o">=</span>odb-name <span class="nv">script</span><span class="o">=</span>output-script.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-the-figures">
+<h2>Plot The Figures<a class="headerlink" href="#plot-the-figures" title="Permalink to this headline">#</a></h2>
+<p>The <strong>Plot</strong> action is used to plot figures. The following Python code is used to plot the figure</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Python Code To Plot The Figure</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data-file-path.csv'</span><span class="p">)</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="s1">'x'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'y'</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ys</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="n">lines</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">y</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">lines</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'xlabel'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'ylabel'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'title'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>You can customize the figure by edit the Code in the <strong>Code</strong> tab and click the <strong>Update</strong> button (<a class="reference internal" href="_images/update.png"><img alt="update" src="_images/update.png" style="height: 20px;"/></a>, the second
+button of the three buttons on the right). You can also click the <strong>Restore</strong> button (<a class="reference internal" href="_images/restore.png"><img alt="restore" src="_images/restore.png" style="height: 20px;"/></a>, the third button of
+the three buttons on the right) to set it to the default style.</p>
+<p>Or, you can also customize the figure using the <strong>matplotlib</strong> default tool button <a class="reference internal" href="_images/options.png"><img alt="options" src="_images/options.png" style="height: 20px;"/></a> to customize the figure.</p>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
@@ -212,15 +309,7 @@ job, extract the output data, and draw figures of the output data.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="download.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Download</div>
-              </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
-            </a>
+          
           
         </div>
         <div class="bottom-of-page">
@@ -254,7 +343,15 @@ job, extract the output data, and draw figures of the output data.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Abaqus Executor</a></li>
+<li><a class="reference internal" href="#">Abaqus Executor</a><ul>
+<li><a class="reference internal" href="#other-links-for-pyabaqus">Other links for pyabaqus</a></li>
+<li><a class="reference internal" href="#downloads">Downloads</a></li>
+<li><a class="reference internal" href="#main-interface">Main Interface</a></li>
+<li><a class="reference internal" href="#create-open-save-project-files">Create, Open, Save Project Files</a></li>
+<li><a class="reference internal" href="#configure-the-project">Configure The Project</a></li>
+<li><a class="reference internal" href="#plot-the-figures">Plot The Figures</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
