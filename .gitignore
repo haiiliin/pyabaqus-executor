@@ -122,3 +122,4 @@ dmypy.json
 /Pipfile
 /Pipfile.lock
 /Qt.ico
+/docs/source/_build/

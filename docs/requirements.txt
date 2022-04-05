@@ -1,0 +1,6 @@
+furo
+numpy
+numpydoc
+PyQt5
+sphinx-toolbox
+sphinxcontrib-bibtex
