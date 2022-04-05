@@ -14,7 +14,7 @@ The Github repository locates in
 Other links for pyabaqus
 ------------------------
 
-- GitHub repository: `Haiiliin/pyabaqus: Type hints for python scripting of Abaqus <https://github.com/Haiiliin/pyabaqus>`_
+- GitHub repository: `github.com/Haiiliin/pyabaqus <https://github.com/Haiiliin/pyabaqus>`_
 - PyPI: `pyabaqus · PyPI <https://pypi.org/project/pyabaqus/>`_
 - Documentation: `Welcome to pyabaqus's documentation! - pyabaqus documentation <https://haiiliin.com/pyabaqus/>`_
 
