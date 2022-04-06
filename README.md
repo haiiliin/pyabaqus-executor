@@ -2,7 +2,7 @@
  Abaqus Executor, the documentation can be found in 
  [Welcome to Abaqus Executor’s documentation!](https://haiiliin.com/pyabaqus-executor)
 
-## Other links for pyabaqus
+## Related project: pyabaqus
 
 - GitHub repository: [github.com/Haiiliin/pyabaqus](https://github.com/Haiiliin/pyabaqus)
 - PyPI: [pyabaqus · PyPI](https://pypi.org/project/pyabaqus/)
