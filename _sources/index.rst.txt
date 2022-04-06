@@ -11,8 +11,8 @@ job, extract the output data, and draw figures of the output data.
 The Github repository locates in 
 `github.com/Haiiliin/pyabaqus-executor <https://github.com/Haiiliin/pyabaqus-executor>`_.
 
-Other links for pyabaqus
-------------------------
+Related project: pyabaqus
+-------------------------
 
 - GitHub repository: `github.com/Haiiliin/pyabaqus <https://github.com/Haiiliin/pyabaqus>`_
 - PyPI: `pyabaqus · PyPI <https://pypi.org/project/pyabaqus/>`_
